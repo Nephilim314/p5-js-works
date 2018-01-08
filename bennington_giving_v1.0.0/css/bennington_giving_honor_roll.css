@@ -1,0 +1,795 @@
+@font-face {
+  font-family:'NeutraDisplay';
+  src: url(fonts/NeutraDisplay-Titling.ttf) format("truetype");
+}
+/*@font-face{
+  font-family:'NeutraText';
+  src: url(//www.bennington.edu/themes/bennington/webfonts/neutra/NeutrafaceText-BookItalic.eot) format("embedded-opentype"),url(//www.bennington.edu/themes/bennington/webfonts/neutra/NeutrafaceText-BookItalic.woff) format("woff");font-weight:400;font-style:italic;
+}
+@font-face{
+  font-family:'NeutraText';
+  src:url(//www.bennington.edu/themes/bennington/webfonts/neutra/NeutraText-Demi.eot) format("embedded-opentype"),url(www.bennington.edu/themes/bennington/webfonts/neutra/NeutraText-Demi.woff) format("woff");font-weight:500;
+}
+@font-face{font-family:'NeutraText';src:url(//www.bennington.edu/themes/bennington/webfonts/neutra/NeutraText-DemiItalicAlt.eot) format("embedded-opentype"),url(//www.bennington.edu/themes/bennington/webfonts/neutra/NeutraText-DemiItalicAlt.woff) format("woff");font-weight:500;font-style:italic;}
+@font-face{font-family:'NeutraText';src:url(//www.bennington.edu/themes/bennington/webfonts/neutra/NeutrafaceText-BoldItalic.eot) format("embedded-opentype"),url(//www.bennington.edu/themes/bennington/webfonts/neutra/NeutrafaceText-BoldItalic.woff) format("woff");font-weight:700;font-style:italic;}
+@font-face{font-family:'NeutraText';src:url(//www.bennington.edu/themes/bennington/webfonts/neutra/NeutrafaceText-Bold.eot) format("embedded-opentype"),url(//www.bennington.edu/themes/bennington/webfonts/neutra/NeutrafaceText-Bold.woff) format("woff");font-weight:700;}
+@font-face{font-family:'NeutraDisplay';src:url(http://www.bennington.edu/themes/bennington/webfonts/neutra/NeutraDisplay-Titling.eot) format("embedded-opentype"),url(//www.bennington.edu/themes/bennington/webfonts/neutra/NeutraDisplay-Titling.woff) format("woff");}
+@font-face{font-family:'NeutraBookAlt';src:url(//www.bennington.edu/themes/bennington/webfonts/neutra/NeutrafaceText-Book_Alt.eot) format("embedded-opentype"),url(//www.bennington.edu/themes/bennington/webfonts/neutra/NeutrafaceText-Book_Alt.woff) format("woff");}*/
+/*@font-face{font-family:'Nevis';src:url(//www.bennington.edu/themes/bennington/webfonts/nevis.ttf) format("truetype");}*/
+
+.debug {
+  margin-top: 30px;
+  color: #ccc;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Helvetica;
+}
+
+.header {
+  border-bottom: 2px solid silver;
+}
+
+.header h1 {
+  font-family: 'NeutraDisplay', Helvetica, sans-serif;
+  font-size: 28px;
+  color: #5b5b5c;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+h1.giving-title {
+  font-family: 'NeutraDisplay', Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 65px;
+  color: rgb(114,98,88);
+  margin-bottom: -12px;
+  margin-top: 10px;
+}
+
+#giving-nav { 
+  margin-bottom: 60px;
+}
+
+a.nav-link {
+  display: inline-block;
+  color: rgb(81,90,116);
+  font-family: 'NeutraDisplay', Helvetica, sans-serif;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 26.4px;
+  padding-right: 50px;
+  text-decoration-line: none;
+  border: none; 
+  position: relative;
+  margin-right: 20px;
+}
+
+a.nav-link:after {
+  content: "";
+  background-image: url(images/circle-arrow-purple.png);
+  background-size: 100%;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  margin-top: -17px;
+  width: 30px;
+  height: 30px;
+  -webkit-transition: all 300ms;
+  transition: all 300ms;
+}
+
+a.nav-link:hover {
+  text-decoration: none;
+  border-bottom: none;
+  color: rgb(81,90,116);
+}
+
+a.nav-link:hover:after {
+  background-image: url(images/circle-arrow-purple-invert.png);
+  right: -5px;
+}
+
+a.nav-link.active:after {
+  background-image: url(images/circle-arrow-purple-invert.png);
+  transform: rotate(90deg);
+  right: -5px;
+}
+
+div.back-to-top {
+  float:right;
+
+}
+
+a.back-to-top {
+  display: inline-block;
+  color: rgb(81,90,116);
+  font-family: 'NeutraDisplay', Helvetica, sans-serif;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 26.4px;
+  padding-right: 50px;
+  text-decoration-line: none;
+  border: none; 
+  position: relative;
+  margin-right: 20px;
+  margin-top: 10px;
+  transition: all 200ms ease-out;
+  -webkit-transition: all 200ms ease-out;
+  -moz-transition: all 200ms ease-out;
+  -o-transition: all 200ms ease-out;
+  position: fixed;
+  bottom: 10px;
+  right: 0px;
+  text-shadow: 0px 1px 10px #fff;
+}
+
+a.back-to-top:after {
+  content: "";
+  background-image: url(images/circle-arrow-purple.png);
+  background-size: 100%;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  margin-top: -17px;
+  width: 30px;
+  height: 30px;
+  -webkit-transition: all 300ms;
+  transition: all 300ms;
+  transform: rotate(-90deg);
+}
+
+a.back-to-top:hover, a.back-to-top:active, a.back-to-top:focus {
+  text-decoration: none;
+  border-bottom: none;
+  color: rgb(81,90,116);
+}
+
+a.back-to-top:hover:after {
+  background-image: url(images/circle-arrow-purple-invert.png);
+  transform: rotate(-90deg);
+  right: -5px;
+}
+
+
+#introduction {
+  position: relative;
+  width: 100%;
+  font-family: Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+}
+
+#introduction-picture-container {
+  float: left;
+  width: 269px;
+  display: inline-block;
+  font-size: 14px;
+  height: 350px;
+  background-image: url("images/Rizzo_Matt_2.png");
+  background-repeat: no-repeat;
+  border: 1px solid #515a74;
+}
+
+#introduction-content {
+  float: left;
+  width: 70%;
+  margin-left: 10px;
+  display: inline-block;
+  line-height: 28.8px;
+}
+
+#make-a-gift {
+  font-family: Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  width: 903px;
+  padding-left: 10px;
+}
+
+.thank-you-image {
+  background-image: url("images/thankyou.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 903px;
+  height: 492px;
+  margin-bottom: 20px;
+}
+
+.rizzo-sig {
+  background-image: url("images/Matt_Rizzo_signature-01.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 276px;
+  height: 73px;
+}
+
+.clearfix {
+  clear: both;
+}
+
+
+.data-container {
+  width: 100%;
+  position: relative;
+  min-height: 300px;
+  border-bottom: 1px solid silver;
+  margin-bottom: 25px;
+}
+
+.data-detail {
+  float:left;
+  width: 40%;
+  max-width: 40%;
+  height: 100%;
+  margin-bottom: 30px;
+}
+
+.data-detail h2 {
+  font-family: 'NeutraDisplay', Helvetica, sans-serif;
+  font-size: 30px !important;
+  margin-top: 0px;
+  margin-bottom: 20px !important;
+  color: #94857C;
+}
+
+.data-detail h3 {
+  display: inline-block;
+  margin: 0px;
+  font-family: Helvetica, sans-serif;
+  font-size: 22px !important;
+  color: #5b5b5b;
+}
+
+.data-detail h3 .smaller {
+  font-size: 18px !important;
+}
+
+.data-detail h3.color {
+  font-family: 'NeutraDisplay';
+  margin-right: 15px;
+  width: 100px;
+  text-align: right;
+  vertical-align: top;
+}
+.data-detail h6 {
+  display: inline-block;
+}
+.data-detail p {
+  font-family: Helvetica, sans-serif;
+  font-size: 18px;
+  color: #888;
+}
+.bottom-line {
+  width: 100%;
+  height: 1px;
+  border-bottom: 1px solid silver;
+}
+
+text {
+  font-family: Helvetica;
+}
+
+.data-chart {
+  float:right;
+  max-width: 55%;
+  width: 55%;
+  position: relative;
+  height: 300px;
+}
+
+.data-chart.come-from {
+  background-image: url(images/comes.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.data-chart.goes-to {
+  background-image: url(images/goes.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.data-chart.purpose {
+  background-image: url(images/purpose.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.data-chart.constituency {
+  background-image: url(images/constituency.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.inner-header {
+  color: #BACCC5;
+  font-size: 48px;
+  font-family: 'NeutraDisplay', Helvetica, sans-serif;
+  font-weight: 400;
+  margin-bottom: 75px;
+}
+
+.nav-key {
+  background-color: white;
+  color: #888 !important;
+}
+
+.nav-key>div {
+  line-height: 30px;
+  margin-bottom: 3px;
+  transition: all 200ms ease-out;
+  -webkit-transition: all 200ms ease-out;
+  -moz-transition: all 200ms ease-out;
+  -o-transition: all 200ms ease-out;
+  font-size: 15px;
+}
+
+.nav-key>h3 {
+  margin-top:0px;
+}
+
+.nav-key:hover, .nav-key>div:hover {
+  background-color: white !important;
+  cursor:inherit;
+}
+
+.blurb {
+  font-family: Helvetica, sans-serif;
+  font-size: 20px;
+  color: #888;
+}
+
+
+
+
+/* Pie Charts */
+
+svg {
+  width: 100%;
+  height: 100%;
+}
+
+path.slice{
+  stroke-width:2px;
+}
+
+polyline{
+  opacity: .3;
+  stroke: black;
+  stroke-width: 2px;
+  fill: none;
+}
+
+.donors {
+  width: 100%;
+  position:relative;
+}
+.donors:after {
+  clear:both;
+}
+
+.donors-container {
+  float:left;
+  width: 70%;
+  display: inline-block;
+}
+
+.donors-container h1 {
+  font-family: 'NeutraDisplay', Helvetica, sans-serif;
+  font-size: 35px !important;
+  margin-top: 0px;
+  margin-bottom: 0px !important;
+  color: #BACCC5;
+}
+
+.donors-container h2 {
+  font-family: Helvetica-Bold, Helvetica;
+  font-size: 25px;
+  color: #D62680;
+  letter-spacing: 0.83px;
+  margin-top:0px;
+}
+
+.donors-container .person {
+  font-family: Helvetica;
+  font-size: 18px;
+  color: #4A4A4A;
+  letter-spacing: 2.22px;
+  display: inline-block;
+  width: 100%;
+  margin-left: 0px;
+  margin-right: 0px;
+  padding-left: 17px;
+  margin-bottom: 8px;
+  border-left: 1px solid #eee;
+  padding-right: 20px;
+  transition: all 200ms ease-out;
+  -webkit-transition: all 200ms ease-out;
+  -moz-transition: all 200ms ease-out;
+  -o-transition: all 200ms ease-out;
+  vertical-align: top;
+}
+
+.donors-container li.decade-line {
+  border-top: 2px solid #ccc;
+  color: #ccc;
+  font-family: 'NeutraDisplay', Helvetica, sans-serif;
+  font-size: 24px;
+  padding-top: 0px;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+  margin-top: 5px;
+  margin-left: 0px;
+  padding-left: 0px;
+  letter-spacing: 5px;
+}
+
+.donors-container li.decade-line .smaller {
+  font-size: 18px;
+}
+
+.donors-container ul {
+  list-style-type: none;
+  padding-left: 0px;
+  border-bottom: 1px solid silver;
+  margin-bottom: 30px;
+}
+
+.donors-container ul>li {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin-left: 20px;
+}
+
+.donors-container .sortable-header {
+  position: relative;
+}
+
+.donors-container .decade-sort {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  display: block;
+  cursor: pointer;
+  width: 58px;
+  height: 30px;
+  border: 1px solid #eee;
+  font-size: 18px;
+  font-family: Helvetica;
+  line-height: 30px;
+  text-align: right;
+  color: #aaa;
+  padding-right: 4px;
+}
+
+.donors-container .decade-sort:before {
+  content: "\25B2\25BC";
+  font-size: 10px;
+  max-width: 8px;
+  display: inline-block;
+  line-height: 12px;
+  position: absolute;
+  top: 2px;
+  left: 4px;
+}
+.donors-container .decade-sort.asc:before {
+  content: "\25B2";
+}
+.donors-container .decade-sort.desc:before {
+  content: "\25BC";
+  top: auto;
+  bottom: 3px;
+}
+
+.donors-nav {
+  float:right;
+  width: 27%;
+  display: inline-block;
+  background-color: #8C8F92;
+  height: 100%;
+}
+
+.donors-nav li {
+  list-style-type: none;
+  margin: 0px;
+  display: block;
+  min-height: 55px;
+  line-height: 23px;
+  font-size: 18px;
+  font-family: Helvetica, sans-serif;
+  color: white;
+  border: 1px solid #8C8F92;
+  cursor:pointer;
+  position: relative;
+  /*padding-left: 16px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-right: 20px;*/
+}
+
+.donors-nav li.active {
+  background-color: white;
+  color: #5b5b5b;
+}
+
+.donors-nav li.active:hover {
+  background-color: white;
+  color: #5b5b5b;
+  cursor: inherit;
+}
+
+.donors-nav li.nav-title, .donors-nav li.nav-title:hover {
+  background-color: #ccc;
+  color: #333;
+  cursor: inherit;
+  padding-left: 16px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-right: 20px;
+}
+
+.donors-nav li>a {
+  color: white;
+  text-decoration: none;
+  border-bottom: none;
+  padding-left: 16px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-right: 20px;
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.donors-nav li.active>a:hover, .donors-nav li.active>a {
+  color: #5b5b5b!important;
+  text-decoration: none!important;
+}
+
+/*.donors-nav li.active::after {
+  content: "x";
+  color: #a0a0a0;
+  position: absolute;
+  right: 8px;
+  background-color: #eee;
+  line-height: 14px;
+  width: 19px;
+  text-align: center;
+  vertical-align: top;
+  padding-top: 1px;
+  border-radius: 100px;
+  font-size: 14px;
+  height: 18px;
+  top: 18px;
+}*/
+
+.donors-nav li:hover {
+  background-color: #A0A4A7;
+}
+
+.blank {
+  font-style: italic;
+  color: #aaa;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid silver;
+  padding-bottom: 20px;
+}
+
+.deceased {
+  font-style: italic;
+}
+
+/*.giving-5-9:before {
+  content:"\2022";
+  color: pink;
+  position: absolute;
+  left: 5px;
+  line-height: 28px;
+  font-size: 40px;
+}*/
+.giving-5-9 {
+  border-left: 4px solid #76756A !important;
+  padding-left: 14px !important;
+}
+.giving-10-24 {
+  border-left: 4px solid #D9BC55 !important;
+  padding-left: 14px !important;
+}
+.giving-25 {
+  border-left: 4px solid #4A90E2 !important;
+  padding-left: 14px !important;
+}
+.giving-nostyle {
+  border-left: 4px solid white !important;
+  padding-left: 14px !important;
+}
+
+.giving-25:hover, .giving-10-24:hover, .giving-5-9:hover {
+  background-color: #f5f5f5 !important;
+  border-left-width:8px !important;
+  padding-left:10px !important;
+}
+
+/*.giving-10-24:before {
+  content:"\2022";
+  color: orange;
+  position: absolute;
+  left: 5px;
+  line-height: 28px;
+  font-size: 40px;
+}*/
+
+/*.giving-25:before {
+  content:"\2022";
+  color: blue;
+  position: absolute;
+  left: 5px;
+  line-height: 28px;
+  font-size: 40px;
+}*/
+
+.show-mobile {
+  display: none !important;
+}
+
+.hide-mobile {
+  display: block !important;
+}
+
+@media screen and (max-width: 599px) {
+  .inner-header {
+    font-size: 24px;
+  }
+  .data-chart {
+    width: 100%;
+    max-width: 100%;
+    float: none;
+    display: block;
+  }
+  .header h1 {
+    font-size: 27px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
+
+  h1.giving-title {
+    font-size: 39px;
+    margin-bottom: 0px;
+  }
+
+  a.nav-link {
+    display: block;
+    line-height: 40px;
+    /*color: rgb(81,90,116);
+    font-family: 'NeutraDisplay', Helvetica, sans-serif;
+    font-size: 22px;
+    font-weight: 400;
+    
+    padding-right: 50px;
+    text-decoration-line: none;
+    border: none; 
+    position: relative;*/
+    margin-right: inherit;
+  }
+
+  a.nav-link:hover:after, a.nav-link.active:after {
+    right: 0px;
+  }
+
+  #mobile-menu-link {
+    display: block;
+    line-height: 40px;
+    margin-top: 20px;
+    color: rgba(81,90,116, 0.8);
+    font-family: 'NeutraDisplay', Helvetica, sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    text-decoration-line: none;
+    border: none;
+    
+    position:relative;
+  }
+
+  #mobile-menu-link:after {
+    content: "";
+    background-image: url(images/hamburger2.png);
+    background-size: 80%;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    margin-top: -17px;
+    width: 30px;
+    height: 30px;
+    -webkit-transition: all 300ms;
+    transition: all 300ms;
+  }
+
+  .show-mobile {
+    display: block !important;
+  }
+
+  .hide-mobile {
+    display: none !important;
+  }
+
+  .donors-container {
+    width: 100%;
+  }
+
+  .donors-nav {
+    width: 100% !important;
+    float: none !important;
+  }
+
+  #introduction-picture-container {
+    float: none;
+    width: 100%;
+    display: block;
+    font-size: 14px;
+    text-align: center;
+    border: none;
+    background-position:center top;
+    margin-bottom: 20px;
+  }
+
+  #introduction-picture-container img {
+    min-width: 75%;
+    min-height: 250px;
+    background: gray;
+  }
+
+  #introduction-content {
+    float: none;
+    width: 100%;
+    display: block;
+    line-height: 28.8px;
+  }
+
+  .data-detail {
+    float:none;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    margin-bottom: 30px;
+  }
+  .data-chart {
+    float:none;
+    max-width: 100%;
+    width: 100%;
+    position: relative;
+    height: 300px;
+  }
+
+  #make-a-gift {
+    font-family: Helvetica, sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    width: 100%;
+    padding-left: 10px;
+  }
+
+  .thank-you-image {
+    background-image: url("images/thankyou.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 200px;
+    margin-bottom: 20px;
+  }
+
+  #mobile-menu-link.hidden {
+    display:none!important;
+  }
+}

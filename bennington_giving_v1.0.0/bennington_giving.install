@@ -1,0 +1,254 @@
+<?php
+
+function bennington_giving_uninstall() {
+  drop_foreign_keys();
+}
+
+function drop_foreign_keys() {
+  try {
+    \Drupal::database()->query("
+      ALTER TABLE bennington_giving_people_categories 
+      DROP FOREIGN KEY `category_name_fk`
+    ")->execute();
+  } catch (\Exception $e) {
+    error_log($e->getMessage());
+  }
+
+  try {
+    \Drupal::database()->query("
+      ALTER TABLE bennington_giving_people_categories 
+      DROP FOREIGN KEY `person_id_fk`
+    ")->execute();
+  } catch (\Exception $e) {
+    error_log($e->getMessage());
+  }
+}
+
+function bennington_giving_install() {
+
+  drop_foreign_keys();
+
+  \Drupal::database()->query("
+    ALTER TABLE bennington_giving_people_categories 
+    ADD CONSTRAINT `category_name_fk` FOREIGN KEY (category_id) REFERENCES bennington_giving_categories (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+  ");
+
+  \Drupal::database()->query("
+    ALTER TABLE bennington_giving_people_categories 
+    ADD CONSTRAINT `person_id_fk` FOREIGN KEY (person_id) REFERENCES bennington_giving_people (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+  ");
+
+  $version = date('Y').'.00';
+
+  $people = [
+    ['name' => 'Test Donor', 'version' => $version],
+    ['name' => 'Test Volunteer', 'version' => $version],
+    ['name' => 'Test Donor II', 'version' => $version],
+  ];
+
+  $categories = [
+    ['name' => 'Donors'],
+    ['name' => 'President\'s Circle Associates'],
+    ['name' => '$1,000,000 and up'],
+    ['name' => '$100,000 - $999,999'],
+    ['name' => '$25,000 - $99,999'],
+    ['name' => 'Patron Associates'],
+    ['name' => '$5,000 - $24,999'],
+    ['name' => 'Associates'],
+    ['name' => '$1,000 - $4,999'],
+    ['name' => 'Lifetime Giving of $1M+'],
+    ['name' => 'New Members'],
+    ['name' => 'Existing Members'],
+    ['name' => 'Undergraduate Alumni'],
+    ['name' => 'Undergraduate Students'],
+    ['name' => '2017'],
+    ['name' => '2018'],
+    ['name' => '2019'],
+    ['name' => '2020'],
+    ['name' => '2021'],
+    ['name' => 'Graduate Alumni and Students'],
+    ['name' => 'Master of Arts'],
+    ['name' => 'Master of Arts in Teaching'],
+    ['name' => 'Master of Arts in Teaching a Second Language'],
+    ['name' => 'Master of Fine Arts'],
+    ['name' => 'Master of Fine Arts in Writing'],
+    ['name' => 'Postbaccalaureate'],
+    ['name' => 'Parents & Families'],
+    ['name' => 'Parents & Families of Current Students'],
+    ['name' => 'Parents & Families of Alumni'],
+    ['name' => 'Faculty & Staff Donors'],
+    ['name' => 'Faculty'],
+    ['name' => 'Staff'],
+    ['name' => 'Friends'],
+    ['name' => 'Corporations and Foundations'],
+    ['name' => 'Matching Gift Corporations and Foundations'],
+    ['name' => 'Silo Legacy Society'],
+    ['name' => 'Existing Silo Legacy Society Members'],
+    ['name' => 'New Silo Legacy Society Members'],
+    ['name' => 'Volunteers'],
+    ['name' => 'FY17 Board of Trustees'],
+    ['name' => 'FY17 Trustees'],
+    ['name' => 'FY17 Board Committee Members'],
+    ['name' => 'Next Pioneers Steering Committee'],
+    ['name' => 'Development Volunteers'],
+    ['name' => 'Student Gift Committee'],
+    ['name' => '2016 Reunion Committee'],
+    ['name' => 'Fran Galvin Memorial Scholarship Committee'],
+    ['name' => 'Spencer Cox ‘90 Tribute Planning Committee'],
+    ['name' => 'Event Hosts and Volunteers'],
+    ['name' => 'Field Work Term Hosts and Volunteers'],
+    ['name' => 'Scholarships and FWT Grants'],
+    ['name' => 'Named and Endowed Scholarships'],
+    ['name' => 'Named and Endowed FWT Grants'],
+    ['name' => 'Deceased'],
+    ['name' => '5 to 9 years cumulative giving'],
+    ['name' => '10 to 24 years cumulative giving'],
+    ['name' => '25+ years cumulative giving'],
+    ['name' => 'Alumni Cooperative Volunteers'],
+    ['name' => '24 Hour Plays'],
+  ];
+
+  $person_ids = [];
+  $category_ids = [];
+
+  foreach($people as $person) {
+    $person_ids[] = \Drupal::database()->insert('bennington_giving_people')
+      ->fields($person)
+      ->execute();
+  }
+
+  foreach($categories as $category) {
+    $category_ids[] = \Drupal::database()->insert('bennington_giving_categories')
+      ->fields($category)
+      ->execute();
+  }
+
+  $joins = [
+    ['person_id' => $person_ids[0], 'category_id' => 1],
+    ['person_id' => $person_ids[0], 'category_id' => 2],
+    ['person_id' => $person_ids[0], 'category_id' => 3],
+    ['person_id' => $person_ids[1], 'category_id' => 34],
+    ['person_id' => $person_ids[1], 'category_id' => 35],
+    ['person_id' => $person_ids[2], 'category_id' => 1],
+    ['person_id' => $person_ids[2], 'category_id' => 6],
+    ['person_id' => $person_ids[2], 'category_id' => 7],
+  ];
+  
+  foreach($joins as $join) {
+    \Drupal::database()->insert('bennington_giving_people_categories')
+      ->fields($join)
+      ->execute();
+  }
+}
+
+
+function bennington_giving_schema() {
+
+  $schema['bennington_giving_people'] = [
+    'description' => 'People for Bennington Giving module',
+    'fields' => [
+      'id' => [
+        'type' => 'serial',
+        'not null' => true,
+        'unsigned' => true,
+        'description' => 'Unique Id for each person',
+      ],
+      'name' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => true,
+        'description' => 'Person name'
+      ],
+      'sort_order' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => false,
+        'description' => 'Sort order for the person'
+      ],
+      'version' => [
+        'type' => 'varchar',
+        'length' => '20',
+        'not null' => true,
+        'description' => 'Version of honor roll',
+      ],
+      'decade' => [
+        'type' => 'int',
+        'length' => 4,
+        'not null' => false,
+        'unsigned' => true,
+        'description' => 'Person decade of graduation',
+      ],
+      'grad_year' => [
+        'type' => 'int',
+        'length' => 4,
+        'not null' => false,
+        'unsigned' => true,
+        'description' => 'Person Year of graduation',
+      ],
+      'parent_year' => [
+        'type' => 'int',
+        'length' => 4,
+        'not null' => false,
+        'unsigned' => true,
+        'description' => 'Parent Year of graduation',
+      ],
+      'tags' => [
+        'type' => 'varchar',
+        'length' => '255',
+        'not null' => false,
+        'description' => 'Tags for this person'
+      ],
+    ],
+    'indexes' => [
+      'version_idx' => ['version'],
+    ],
+    'primary key' => ['id'],
+  ];
+
+  $schema['bennington_giving_categories'] = [
+    'description' => 'Categories for Bennington Giving module',
+    'fields' => [
+      'id' => [
+        'type' => 'serial',
+        'not null' => true,
+        'unsigned' => true,
+        'description' => 'Unique Id for each category',
+      ],
+      'name' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => true,
+        'description' => 'Category name'
+      ],
+    ],
+    'unique keys' => [
+      'name_idx' => ['name'],
+    ],
+    'primary key' => ['id'],
+  ];
+
+  $schema['bennington_giving_people_categories'] = [
+    'description' => 'Categories for Bennington Giving module',
+    'fields' => [
+      'person_id' => [
+        'type' => 'int',
+        'unsigned' => true,
+        'not null' => true,
+        'description' => 'Person Id',
+      ],
+      'category_id' => [
+        'type' => 'int',
+        'unsigned' => true,
+        'not null' => true,
+        'description' => 'Category Id',
+      ],
+    ],
+    'primary key' => ['person_id', 'category_id'],
+  ];
+
+  return $schema;
+}

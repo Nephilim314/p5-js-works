@@ -1,0 +1,12 @@
+bennington_giving.admin:
+  title: 'Donor Roll Admin'
+  description: 'Bennington Giving Donor Roll administration'
+  parent: system.admin_config
+  route_name: bennington_giving.honor-roll-admin
+  weight: -10
+bennington_giving.honor-roll:
+  title: 'Donor Roll File Management'
+  description: 'Upload and remove donor roll data'
+  parent: bennington_giving.admin
+  route_name: bennington_giving.honor-roll-admin
+  weight: -10
