@@ -1,8 +1,0 @@
-Sort Key,Name,"$1,000,000 and up","$100,000 to $999,999","$25,000 - $99,999",decade,25+ years cumulative giving
-"Smith, John, 12345",_John_ & Jane Smith '85,x,,,1980,
-"Smith, Arnie, 12346",Arnie Smith '85,x,,,1980,
-"Smith, Lois, 12345",Lois Smith '96,x,,,1990,
-"Zith, John, 12345",John Zith '84,x,,,1980,x
-"Doe, Jane 12346",Jane Doe '12,,x,,2010,x
-"Doe, John 12346",John Doe '12,,x,,2010,
-"Smith, Bill 12567",Bill Smith '56,,,x,,
